@@ -1,0 +1,23 @@
+<%- include("navbar") %>
+
+<head>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<div class="container">
+    <h2>Weather Information</h2>
+    <form action="/weather" method="GET">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <% if (weather) { %>
+        <h3>Weather in <%= weather.city %></h3>
+        <p>Temperature: <%= weather.temp %>°C</p>
+        <p>Condition: <%= weather.description %></p>
+        <!-- Optional: Display weather icon -->
+        <img src="http://openweathermap.org/img/wn/<%= weather.icon %>@2x.png" alt="Weather Icon">
+    <% } %>
+</div>
+
+<%- include("footer") %>
