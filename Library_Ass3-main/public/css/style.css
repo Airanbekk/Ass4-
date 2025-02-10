@@ -1,21 +1,21 @@
 /* === Google Fonts === */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-/* === Root Variables (For easy color changes) === */
+/* === Root Variables (Soft Colors) === */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --light-bg: #f8f9fa;
-    --dark-bg: #212529;
-    --text-light: #ffffff;
-    --text-dark: #343a40;
-    --border-radius: 8px;
+    --primary-color: #4A90E2;  /* Спокойный синий */
+    --secondary-color: #8898A8; /* Серый с оттенком синего */
+    --light-bg: #F4F6F8;  /* Мягкий светлый фон */
+    --dark-bg: #2C3E50;  /* Глубокий темный фон */
+    --text-light: #ECEFF1;  /* Светлый текст */
+    --text-dark: #2A2A2A;  /* Темный текст */
+    --border-radius: 12px;
     --transition-speed: 0.3s;
 }
 
 /* === Global Styles === */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--light-bg);
@@ -31,8 +31,8 @@ body.dark-mode {
 
 /* === Container === */
 .container {
-    max-width: 1200px;
-    margin: 20px auto;
+    max-width: 1100px;
+    margin: 30px auto;
     padding: 20px;
 }
 
@@ -42,26 +42,27 @@ body.dark-mode {
     justify-content: space-between;
     align-items: center;
     background: var(--primary-color);
-    padding: 15px 20px;
+    padding: 14px 24px;
     border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar a {
     color: var(--text-light);
     text-decoration: none;
     font-weight: 600;
-    padding: 10px;
+    padding: 10px 15px;
     transition: color var(--transition-speed);
 }
 
 .navbar a:hover {
-    color: #ffdd57;
+    color: #FFD166; /* Теплый желтый оттенок */
 }
 
 /* === Buttons === */
 .btn {
     display: inline-block;
-    padding: 10px 15px;
+    padding: 12px 18px;
     background: var(--primary-color);
     color: var(--text-light);
     border: none;
@@ -72,7 +73,7 @@ body.dark-mode {
 }
 
 .btn:hover {
-    background: #0056b3;
+    background: #357ABD;
     transform: scale(1.05);
 }
 
@@ -81,13 +82,13 @@ form {
     background: var(--text-light);
     padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 form input, form select {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 12px;
+    margin: 12px 0;
     border: 1px solid var(--secondary-color);
     border-radius: var(--border-radius);
 }
@@ -100,9 +101,9 @@ form button {
 /* === Cards (For Books, Weather, etc.) === */
 .card {
     background: var(--text-light);
-    padding: 15px;
+    padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s;
 }
 
@@ -128,6 +129,6 @@ form button {
     }
 
     .container {
-        padding: 10px;
+        padding: 15px;
     }
 }
