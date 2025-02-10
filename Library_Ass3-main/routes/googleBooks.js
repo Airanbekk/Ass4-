@@ -2,8 +2,10 @@ const express = require("express");
 const axios = require("axios");
 require("dotenv").config();
 
-const router = express.Router();
 const GOOGLE_BOOKS_API_KEY = process.env.GOOGLE_BOOKS_API_KEY;
+console.log("Google Books API Key:", GOOGLE_BOOKS_API_KEY); // Проверяем, загружается ли ключ
+
+const router = express.Router();
 const booksApiUrl = "https://www.googleapis.com/books/v1/volumes?q=";
 
 // 📚 Поиск книги по названию
@@ -12,6 +14,8 @@ router.get("/search/:query", async (req, res) => {
         const query = req.params.query;
         const response = await axios.get(`${booksApiUrl}${query}&key=${GOOGLE_BOOKS_API_KEY}`);
         const books = response.data.items || [];
+
+        console.log("API Response:", response.data); // Проверяем, что возвращает API
 
         res.render("googleBooks", { books, user: req.session.user || null });
     } catch (error) {
