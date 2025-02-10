@@ -1,0 +1,16 @@
+async function getRelatedBooks(bookId) {
+    const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}/associated?key=${API_KEY}`);
+    const data = await response.json();
+
+    if (data.items) {
+        console.log("Похожие книги:");
+        data.items.forEach(book => {
+            console.log(`📖 ${book.volumeInfo.title} - ${book.volumeInfo.authors?.join(", ")}`);
+        });
+    } else {
+        console.log("Нет рекомендаций.");
+    }
+}
+
+// Пример вызова (bookId нужно получить заранее)
+getRelatedBooks("zyTCAlFPjgYC"); 
