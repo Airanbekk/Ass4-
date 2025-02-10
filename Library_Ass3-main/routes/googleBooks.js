@@ -3,24 +3,25 @@ const axios = require("axios");
 require("dotenv").config();
 
 const GOOGLE_BOOKS_API_KEY = process.env.GOOGLE_BOOKS_API_KEY;
-console.log("Google Books API Key:", GOOGLE_BOOKS_API_KEY); // Проверяем, загружается ли ключ
-
 const router = express.Router();
 const booksApiUrl = "https://www.googleapis.com/books/v1/volumes?q=";
 
-// 📚 Поиск книги по названию
-router.get("/search/:query", async (req, res) => {
+// 📚 Популярные книги по категориям
+const categories = ["Fiction", "Mystery", "Fantasy", "Science", "History"];
+
+router.get("/popular", async (req, res) => {
     try {
-        const query = req.params.query;
-        const response = await axios.get(`${booksApiUrl}${query}&key=${GOOGLE_BOOKS_API_KEY}`);
-        const books = response.data.items || [];
+        const categoryPromises = categories.map(async (category) => {
+            const response = await axios.get(`${booksApiUrl}subject:${category}&maxResults=5&key=${GOOGLE_BOOKS_API_KEY}`);
+            return { category, books: response.data.items || [] };
+        });
 
-        console.log("API Response:", response.data); // Проверяем, что возвращает API
+        const popularBooks = await Promise.all(categoryPromises);
 
-        res.render("googleBooks", { books, user: req.session.user || null });
+        res.render("popularBooks", { popularBooks, user: req.session.user || null });
     } catch (error) {
-        console.error("Ошибка при получении данных из Google Books API:", error);
-        res.status(500).render("error", { message: "Ошибка при поиске книг", user: req.session.user || null });
+        console.error("Ошибка при получении популярных книг:", error);
+        res.status(500).render("error", { message: "Ошибка при загрузке популярных книг", user: req.session.user || null });
     }
 });
 
