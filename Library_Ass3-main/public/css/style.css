@@ -1,13 +1,13 @@
 /* === Google Fonts === */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-/* === Root Variables (Soft Colors) === */
+/* === Root Variables (Crimson Theme) === */
 :root {
-    --primary-color: #4A90E2;  /* Спокойный синий */
-    --secondary-color: #8898A8; /* Серый с оттенком синего */
-    --light-bg: #F4F6F8;  /* Мягкий светлый фон */
-    --dark-bg: #2C3E50;  /* Глубокий темный фон */
-    --text-light: #ECEFF1;  /* Светлый текст */
+    --primary-color: #DC143C;  /* Crimson */
+    --secondary-color: #A52A2A; /* Темно-красный */
+    --light-bg: #F8F1F1;  /* Мягкий светлый фон */
+    --dark-bg: #2A1B1B;  /* Темный бордовый */
+    --text-light: #FDF7F7;  /* Светлый текст */
     --text-dark: #2A2A2A;  /* Темный текст */
     --border-radius: 12px;
     --transition-speed: 0.3s;
@@ -56,7 +56,7 @@ body.dark-mode {
 }
 
 .navbar a:hover {
-    color: #FFD166; /* Теплый желтый оттенок */
+    color: #FFD700; /* Золотистый оттенок */
 }
 
 /* === Buttons === */
@@ -73,7 +73,7 @@ body.dark-mode {
 }
 
 .btn:hover {
-    background: #357ABD;
+    background: #B22222; /* Темно-красный */
     transform: scale(1.05);
 }
 
