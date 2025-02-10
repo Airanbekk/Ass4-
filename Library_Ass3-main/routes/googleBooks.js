@@ -1,28 +1,22 @@
 const express = require("express");
-const router = express.Router();
 const axios = require("axios");
+require("dotenv").config();
 
-// Получение похожих книг из Google Books API
-router.get("/related/:bookId", async (req, res) => {
+const router = express.Router();
+const GOOGLE_BOOKS_API_KEY = process.env.GOOGLE_BOOKS_API_KEY;
+const booksApiUrl = "https://www.googleapis.com/books/v1/volumes?q=";
+
+// 📚 Поиск книги по названию
+router.get("/search/:query", async (req, res) => {
     try {
-        const { bookId } = req.params;
-        const API_KEY = "ТВОЙ_API_КЛЮЧ"; // Можно убрать, если работаешь без ключа
+        const query = req.params.query;
+        const response = await axios.get(`${booksApiUrl}${query}&key=${GOOGLE_BOOKS_API_KEY}`);
+        const books = response.data.items || [];
 
-        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}/associated?key=${API_KEY}`);
-        res.json(response.data);
+        res.render("googleBooks", { books, user: req.session.user || null });
     } catch (error) {
-        res.status(500).json({ message: "Ошибка получения похожих книг" });
-    }
-});
-
-// Получение информации о книге по ISBN
-router.get("/book/:isbn", async (req, res) => {
-    try {
-        const { isbn } = req.params;
-        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ message: "Ошибка получения информации о книге" });
+        console.error("Ошибка при получении данных из Google Books API:", error);
+        res.status(500).render("error", { message: "Ошибка при поиске книг", user: req.session.user || null });
     }
 });
 
