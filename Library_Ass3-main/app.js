@@ -68,16 +68,18 @@ app.use((req, res, next) => {
 
 // ✅ Load Routes (Ensure These Files Exist)
 try {
-    app.use("/", require("./routes/authRoutes")); // Login & Authentication
-    app.use("/books", require("./routes/bookRoutes")); // Books API
-    app.use("/weather", require("./routes/weatherRoutes")); // Weather API
-    app.use("/currency", require("./routes/currencyRoutes")); // Currency API
-    app.use("/admin", require("./routes/adminRoutes")); // Admin Panel
-    app.use("/history", require("./routes/historyRoutes")); // History Feature
-    app.use("/opengraph", require("./routes/opengraphRoutes")); // OpenGraph API
+    app.use("/", require("./routes/authRoutes")); 
+    app.use("/books", require("./routes/bookRoutes")); 
+    app.use("/weather", require("./routes/weatherRoutes")); 
+    app.use("/currency", require("./routes/currencyRoutes")); 
+    app.use("/admin", require("./routes/adminRoutes")); 
+    app.use("/history", require("./routes/historyRoutes")); 
+    app.use("/opengraph", require("./routes/opengraphRoutes")); 
+    app.use("/openlibrary", require("./routes/openLibrary")); // ✅ Добавили Open Library API
 } catch (error) {
     console.error("❌ Route Loading Error:", error);
 }
+
 
 // ✅ Default Home Route
 app.get("/", (req, res) => {
