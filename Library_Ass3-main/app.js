@@ -76,6 +76,8 @@ try {
     app.use("/history", require("./routes/historyRoutes")); 
     app.use("/opengraph", require("./routes/opengraphRoutes")); 
     app.use("/openlibrary", require("./routes/openLibrary")); // ✅ Добавили Open Library API
+    app.use("/api/googlebooks", require("./routes/googleBooks"));
+
 } catch (error) {
     console.error("❌ Route Loading Error:", error);
 }
